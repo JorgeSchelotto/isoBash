@@ -54,14 +54,15 @@ fi
 #    fi
 # done
 # echo "${array[$1]}"
-
+echo "$(awk -F";" 'FNR == '''$1''' {print $'''$2'''}' aeropuertos_detalle.csv )"
 echo "$(cat aeropuertos_detalle.csv | cut -d';' -f$2 | awk "FNR == $1 {print}")"
+
 echo "$(cat aeropuertos_detalle.csv | cut -d';' -f$2 | awk "FNR == 1 {print}")"
+echo "$(awk -F";" 'FNR == 1 {print $'''$2'''}' aeropuertos_detalle.csv)"
+
 find="$(cat aeropuertos_detalle.csv | cut -d';' -f$2 | awk "FNR == $1 {print}")"
 echo "$(cat aeropuertos_detalle.csv | cut -d';' -f$2 | grep -i -c "$find")"
 
-
-
-
+exit 0
 
 
